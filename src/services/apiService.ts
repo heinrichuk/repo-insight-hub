@@ -1,4 +1,3 @@
-
 import { RepoData } from '@/types';
 
 const API_BASE_URL = 'http://localhost:8000';
@@ -122,7 +121,7 @@ export async function askQuestion(query: string, repoData: RepoData): Promise<st
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query, repoData }),
+      body: JSON.stringify({ query, repo_data: repoData }),
     });
     
     if (!response.ok) {
