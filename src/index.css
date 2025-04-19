@@ -6,7 +6,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 352 78% 46%; // Adjusted hue to match UBS red
+    --foreground: 352 78% 46%;
 
     --card: 0 0% 100%;
     --card-foreground: 352 78% 46%;
@@ -14,16 +14,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 352 78% 46%;
 
-    --primary: 352 78% 46%; // Adjusted to match UBS red
+    --primary: 352 78% 46%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 352 78% 56%; // Slightly lighter red
+    --secondary: 352 78% 56%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 96.1%;
     --muted-foreground: 352 78% 36%;
 
-    --accent: 352 78% 36%; // Darker red
+    --accent: 352 78% 36%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
