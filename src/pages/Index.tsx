@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import RepositoryInput from "@/components/RepositoryInput";
@@ -25,15 +26,16 @@ const Index = () => {
     }
 
     const typeCounts = repoData.nodes.reduce((acc, node) => {
-      acc[node.type] = (acc[node.type] || 0) + 1;
+      const nodeType = node.type as NodeFilterType;
+      acc[nodeType] = (acc[nodeType] || 0) + 1;
       return acc;
-    }, {} as Record<string, number>);
+    }, {} as Record<NodeFilterType, number>);
 
     return [
-      { type: 'file', count: typeCounts['file'] || 0 },
-      { type: 'class', count: typeCounts['class'] || 0 },
-      { type: 'function', count: typeCounts['function'] || 0 },
-      { type: 'module', count: typeCounts['module'] || 0 }
+      { type: 'file' as NodeFilterType, count: typeCounts['file'] || 0 },
+      { type: 'class' as NodeFilterType, count: typeCounts['class'] || 0 },
+      { type: 'function' as NodeFilterType, count: typeCounts['function'] || 0 },
+      { type: 'module' as NodeFilterType, count: typeCounts['module'] || 0 }
     ];
   }, [repoData]);
 
