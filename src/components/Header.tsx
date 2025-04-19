@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { MessageCircle } from 'lucide-react';
 
 interface HeaderProps {
   className?: string;
@@ -20,7 +21,13 @@ const Header = ({ className }: HeaderProps) => {
         
         <div className="hidden md:flex items-center space-x-4">
           <Button variant="link" className="text-white hover:text-gray-300">Documentation</Button>
-          <Button variant="outline" className="text-white border-white hover:bg-white hover:text-ubs-blue">Feedback</Button>
+          <Button 
+            variant="outline" 
+            className="text-white border-white hover:bg-white hover:text-ubs-blue flex items-center gap-2"
+          >
+            <MessageCircle className="w-5 h-5" />
+            Feedback
+          </Button>
         </div>
         
         <div className="md:hidden">
@@ -44,7 +51,13 @@ const Header = ({ className }: HeaderProps) => {
         <div className="md:hidden mt-4 bg-ubs-blue">
           <div className="flex flex-col space-y-2 px-6 py-4">
             <Button variant="link" className="text-white hover:text-gray-300 text-left">Documentation</Button>
-            <Button variant="outline" className="text-white border-white hover:bg-white hover:text-ubs-blue">Feedback</Button>
+            <Button 
+              variant="outline" 
+              className="text-white border-white hover:bg-white hover:text-ubs-blue flex items-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Feedback
+            </Button>
           </div>
         </div>
       )}
@@ -53,3 +66,4 @@ const Header = ({ className }: HeaderProps) => {
 };
 
 export default Header;
+
