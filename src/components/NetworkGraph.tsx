@@ -196,6 +196,12 @@ const NetworkGraph: React.FC<NetworkGraphProps> = ({ repoData, visualizationType
     const radius = diameter / 2;
     const innerRadius = radius - 120;
 
+    // Define line curve generator first
+    const lineGenerator = line()
+      .curve(curveBundle.beta(0.85))
+      .x((d: any) => d.x = Math.cos(d.x * Math.PI / 180) * d.y)
+      .y((d: any) => d.y = Math.sin(d.x * Math.PI / 180) * d.y);
+
     // Convert the flat node data to a hierarchical structure
     // This is a simplified conversion for demonstration
     const root = hierarchy({
@@ -222,12 +228,6 @@ const NetworkGraph: React.FC<NetworkGraphProps> = ({ repoData, visualizationType
       .attr('transform', `translate(${width / 2},${height / 2})`);
 
     // Add links
-    const bundle = curveBundle.beta(0.85);
-    const line = d3line()
-      .curve(bundle)
-      .x((d: any) => d.x = Math.cos(d.x * Math.PI / 180) * d.y)
-      .y((d: any) => d.y = Math.sin(d.x * Math.PI / 180) * d.y);
-
     const linkData: any[] = [];
     root.leaves().forEach((leaf: any) => {
       if (leaf.data.imports) {
@@ -247,7 +247,7 @@ const NetworkGraph: React.FC<NetworkGraphProps> = ({ repoData, visualizationType
       .data(linkData)
       .enter().append('path')
       .attr('class', 'link')
-      .attr('d', (d: any) => line([d.source, d.target]))
+      .attr('d', (d: any) => lineGenerator([d.source, d.target]))
       .attr('stroke', '#999')
       .attr('stroke-opacity', 0.4)
       .attr('fill', 'none');
@@ -270,11 +270,6 @@ const NetworkGraph: React.FC<NetworkGraphProps> = ({ repoData, visualizationType
       .attr('transform', (d: any) => d.x < 180 ? null : 'rotate(180)')
       .text((d: any) => d.data.name)
       .attr('font-size', '10px');
-
-    // Define d3line - It was used before it was defined
-    function d3line() {
-      return line();
-    }
   };
 
   const renderArcDiagram = (svg: any, data: any, width: number, height: number, colorScale: any) => {
