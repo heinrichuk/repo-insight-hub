@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import RepositoryInput from "@/components/RepositoryInput";
@@ -18,10 +17,10 @@ const Index = () => {
   const availableNodeTypes = React.useMemo(() => {
     if (!repoData) {
       return [
-        { type: 'file', count: 0 },
-        { type: 'class', count: 0 },
-        { type: 'function', count: 0 },
-        { type: 'module', count: 0 }
+        { type: 'file' as NodeFilterType, count: 0 },
+        { type: 'class' as NodeFilterType, count: 0 },
+        { type: 'function' as NodeFilterType, count: 0 },
+        { type: 'module' as NodeFilterType, count: 0 }
       ];
     }
 
