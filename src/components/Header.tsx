@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,10 +22,10 @@ const Header = ({ className }: HeaderProps) => {
           <Button variant="link" className="text-white hover:text-gray-300">Documentation</Button>
           <Button 
             variant="outline" 
-            className="text-white border-white hover:bg-white hover:text-ubs-blue flex items-center gap-2"
+            className="text-white border-white hover:bg-white hover:text-ubs-blue flex items-center gap-2 bg-opacity-30 backdrop-blur-sm"
           >
             <MessageCircle className="w-5 h-5" />
-            Feedback
+            <span className="font-semibold text-white">Feedback</span>
           </Button>
         </div>
         
@@ -46,17 +45,16 @@ const Header = ({ className }: HeaderProps) => {
         </div>
       </div>
       
-      {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden mt-4 bg-ubs-blue">
           <div className="flex flex-col space-y-2 px-6 py-4">
             <Button variant="link" className="text-white hover:text-gray-300 text-left">Documentation</Button>
             <Button 
               variant="outline" 
-              className="text-white border-white hover:bg-white hover:text-ubs-blue flex items-center gap-2"
+              className="text-white border-white hover:bg-white hover:text-ubs-blue flex items-center gap-2 bg-opacity-30 backdrop-blur-sm"
             >
               <MessageCircle className="w-5 h-5" />
-              Feedback
+              <span className="font-semibold text-white">Feedback</span>
             </Button>
           </div>
         </div>
@@ -66,4 +64,3 @@ const Header = ({ className }: HeaderProps) => {
 };
 
 export default Header;
-
