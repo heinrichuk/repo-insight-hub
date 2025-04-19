@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,32 +6,32 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 350 78% 56%;
+    --foreground: 352 78% 46%; // Adjusted hue to match UBS red
 
     --card: 0 0% 100%;
-    --card-foreground: 350 78% 56%;
+    --card-foreground: 352 78% 46%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 350 78% 56%;
+    --popover-foreground: 352 78% 46%;
 
-    --primary: 350 78% 56%;
+    --primary: 352 78% 46%; // Adjusted to match UBS red
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 78% 66%;
+    --secondary: 352 78% 56%; // Slightly lighter red
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 96.1%;
-    --muted-foreground: 350 78% 36%;
+    --muted-foreground: 352 78% 36%;
 
-    --accent: 350 78% 46%;
+    --accent: 352 78% 36%; // Darker red
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 350 78% 76%;
-    --input: 350 78% 76%;
-    --ring: 350 78% 56%;
+    --border: 352 78% 66%;
+    --input: 352 78% 66%;
+    --ring: 352 78% 46%;
 
     --radius: 0.5rem;
   }

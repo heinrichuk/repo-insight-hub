@@ -19,20 +19,17 @@ export default {
     },
     extend: {
       colors: {
-        // Customizing colors to use red as the primary color
         ubs: {
-          blue: '#ea384c', // Replacing UBS blue with a red color
-          lightblue: '#ff5a5f', // A lighter shade of red
+          blue: '#ea384c', // UBS red from the website
+          lightblue: '#ff5a5f', // A lighter shade of the red
           gray: '#EFEFEF',
           darkgray: '#555555',
-          red: '#ea384c', // Using the same red as the primary color
+          red: '#ea384c', // Same as the main blue (red)
         },
-        // Updating primary color to red
         primary: {
-          DEFAULT: 'hsl(350, 78%, 56%)', // A vibrant red
+          DEFAULT: 'hsl(350, 78%, 46%)', // Adjusted to be closer to the UBS red
           foreground: 'hsl(0, 0%, 100%)' // White text
         },
-        // Adjusting other colors to complement the red theme
         secondary: {
           DEFAULT: 'hsl(350, 78%, 66%)', // A lighter red
           foreground: 'hsl(0, 0%, 100%)'
