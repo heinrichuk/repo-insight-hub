@@ -1,3 +1,4 @@
+
 import { RepoData } from '@/types';
 
 const API_BASE_URL = 'http://localhost:8000';
@@ -28,11 +29,33 @@ const mockRepoData: RepoData = {
   ]
 };
 
-// Check if we're in development mode and if the API is not available
-const useMockData = true; // Set this to false to use the actual API when available
+// Check if the API is actually available
+let backendAvailable = false;
+
+// Function to check if the backend is available
+export async function checkBackendAvailability(): Promise<boolean> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/health`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    
+    backendAvailable = response.ok;
+    console.log(`Backend is ${backendAvailable ? 'available' : 'not available'}`);
+    return backendAvailable;
+  } catch (error) {
+    console.warn('Backend health check failed:', error);
+    backendAvailable = false;
+    return false;
+  }
+}
+
+// Call this once when the application starts
+checkBackendAvailability();
 
 export async function analyzeRepo(repoUrl: string): Promise<RepoData> {
-  if (useMockData) {
+  if (!backendAvailable) {
+    console.log('Using mock data (backend unavailable)');
     // Return mock data after a small delay to simulate API call
     return new Promise(resolve => {
       setTimeout(() => {
@@ -60,12 +83,17 @@ export async function analyzeRepo(repoUrl: string): Promise<RepoData> {
     return await response.json();
   } catch (error) {
     console.error('Failed to analyze repository:', error);
-    throw error;
+    // Fallback to mock data if the API call fails
+    return {
+      ...mockRepoData,
+      name: `Sample of ${repoUrl.split('/').pop() || 'Repository'} (Fallback)`
+    };
   }
 }
 
 export async function uploadRepoZip(file: File): Promise<RepoData> {
-  if (useMockData) {
+  if (!backendAvailable) {
+    console.log('Using mock data (backend unavailable)');
     // Return mock data after a small delay to simulate API call
     return new Promise(resolve => {
       setTimeout(() => {
@@ -93,12 +121,17 @@ export async function uploadRepoZip(file: File): Promise<RepoData> {
     return await response.json();
   } catch (error) {
     console.error('Failed to upload repository:', error);
-    throw error;
+    // Fallback to mock data if the API call fails
+    return {
+      ...mockRepoData,
+      name: `Uploaded ${file.name.replace('.zip', '')} (Fallback)`
+    };
   }
 }
 
 export async function askQuestion(query: string, repoData: RepoData): Promise<string> {
-  if (useMockData) {
+  if (!backendAvailable) {
+    console.log('Using mock data (backend unavailable)');
     // Return a mock response based on the query
     return new Promise(resolve => {
       setTimeout(() => {
@@ -132,6 +165,7 @@ export async function askQuestion(query: string, repoData: RepoData): Promise<st
     return data.response;
   } catch (error) {
     console.error('Failed to get answer:', error);
-    throw error;
+    // Fallback to a generic response if the API call fails
+    return `I'm having trouble analyzing your query about "${query}". The backend service might be unavailable. Please try again later.`;
   }
 }
